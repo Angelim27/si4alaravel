@@ -28,6 +28,7 @@
           </div>
         </div>
         <div class="card-body"> 
+          <a href="{{route('fakultas.create')}}" class="btn btn-primary"> Tambah</a>
             <table class="table">
                 <thead> 
                     <tr> 
@@ -48,5 +49,10 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
+      </div>
+    </div>
+</div>
+ 
 @endsection
 
