@@ -15,6 +15,8 @@ class Mahasiswa extends Model
         'tanggal_lahir',
         'tempat_lahir',
         'asal_sma',
+        'prodi_id',
+        'foto',
     ];
 
     public function prodi()

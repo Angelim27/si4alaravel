@@ -32,6 +32,7 @@
             <table class="table">
                 <thead> 
                     <tr>
+                        <th>foto</th>
                         <th>Npm</th>
                         <th>Nama</th>
                         <th>Jenis Kelamin</th>
@@ -39,9 +40,12 @@
                         <th>Tempat Lahir</th>
                         <th>Asal SMA</th>
                         <th>Prodi ID</th>
+                        <th>Aksi</th>
+                        
                     </tr>
                     @foreach ($mahasiswa as $item)
                         <tr> 
+                          <td> <img src="images/{{ $item->foto}}" width="80px"></td>
                             <td>{{ $item->npm }}</td>
                             <td>{{ $item->nama}}</td>
                             <td>{{ $item->jk}}</td>
@@ -49,6 +53,15 @@
                             <td>{{ $item->tempat_lahir}}</td>
                             <td>{{ $item->asal_sma}}</td>
                             <td>{{ $item->prodi->nama}}</td>
+                            <td>
+                              <a href=" {{ route('mahasiswa.show', $item-> id)}}" class="btn btn-info">show</a> <!-- BTN INFO : WARNA BIRU MUDA -->
+                              <a href=" {{ route('mahasiswa.edit', $item-> id)}}" class="btn btn-warning">edit</a> <!-- BTN WARNING : WARNA KUNING -->
+                              <form action="{{ route('mahasiswa.destroy', $item->id)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                              </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

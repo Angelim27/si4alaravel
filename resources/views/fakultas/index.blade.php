@@ -36,6 +36,7 @@
                         <th> Singkatan </th>
                         <th> Dekan </th>
                         <th> Wakil Dekan </th>
+                        <th> Aksi </th>
                     </tr>
                 </thead>
             <tbody>
@@ -45,6 +46,21 @@
                         <td> {{$item->singkatan}} </td>
                         <td> {{$item->dekan}}</td>
                         <td> {{$item->wakil_dekan}}</td>
+                        <td>
+                          <a href=" {{ route('mahasiswa.show', $item-> id)}}" class="btn btn-info">show</a> <!-- BTN INFO : WARNA BIRU MUDA -->
+                          <a href=" {{ route('mahasiswa.edit', $item-> id)}}" class="btn btn-warning">edit</a> <!-- BTN WARNING : WARNA KUNING -->
+                          <form action="{{ route('mahasiswa.destroy', $item->id)}}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}">
+                              @csrf
+                              <input name="_method" type="hidden" value="DELETE">
+                              <button type="submit" class="btn btn-xs btn-danger btn-rounded show_confirm"
+                              data-toggle="tooltip" title='Delete'
+                              data-nama='{{ $item->nama }}'> Delete </button>
+                            </form>
+                          </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

@@ -820,8 +820,11 @@
         }
       });
     </script>
+    <!--jquery cdn-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!--end::OverlayScrollbars Configure-->
-    <!--end::Script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
   </body>
   <!--end::Body-->
 </html>

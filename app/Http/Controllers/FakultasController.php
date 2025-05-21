@@ -22,7 +22,8 @@ class FakultasController extends Controller
      * Show the form for creating a new resource.
      */
     public function create() // menambahkan formulir tambah data fakultas
-    {
+    {   
+        $fakultas = Fakultas::all(); 
         return view ('fakultas.create');
     }
 
@@ -52,7 +53,9 @@ class FakultasController extends Controller
      */
     public function show(Fakultas $fakultas) // menampilkan detail fakultas
     {
-        //
+        $fakultas = Fakultas::findOrFail($fakultas);
+        dd($fakultas); // dump and die
+
     }
 
     /**

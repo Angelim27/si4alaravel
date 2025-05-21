@@ -8,7 +8,7 @@
             <div class="card-header"><div class="card-title">Tambah Mahasiswa</div></div>
             <!--end::Header-->
             <!--begin::Form-->
-            <form action="{{ route('mahasiswa.store') }}" method="post">
+            <form action="{{ route('mahasiswa.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
         
               <!--begin::Body-->
@@ -25,7 +25,7 @@
                   <input type="text" class="form-control" name="nama" value="{{ old ('nama')}}">
                   @error('nama')
                   <div class="text-danger"> {{ $message }}</div>
-                @enderror
+                  @enderror
                 </div>
                 <div class="mb-3">
                     <label for="jk" class="form-label"> Jenis Kelamin</label> <br>
@@ -36,10 +36,10 @@
                     @enderror
                   </div>
                   <div class="mb-3">
-                    <label for="tanggal_lahir" class="form-label"> Tanggal Lahir </label>
-                    <input type="text" class="form-control" name="tanggal_lahir" value="{{ old ('tanggal_lahir')}}">
+                    <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                    <input type="date" class="form-control" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
                     @error('tanggal_lahir')
-                    <div class="text-danger"> {{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                     @enderror
                   </div>
                   <div class="mb-3">
@@ -56,9 +56,20 @@
                     <div class="text-danger"> {{ $message }}</div>
                     @enderror
                   </div>
+                  <div class="mb-3">
+                    <label for="prodi_id" class="form-label">Prodi</label>
+                    <select class="form-control" name="prodi_id">
+                    <option value="">Pilih Prodi</option>
+                    @foreach ($prodi as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                    @endforeach </select>
+                    @error('prodi_id')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
                     <div class="mb-3">
                     <label for="foto" class="form-label"> Foto </label>
-                    <input type="file" class="form-control" name="foto" value="{{ old ('foto')}}">
+                    <input type="file" class="form-control" name="foto">
                     @error('foto')
                     <div class="text-danger"> {{ $message }}</div>
                     @enderror
@@ -75,5 +86,4 @@
           </div>
     </div>
 </div>
- 
 @endsection
