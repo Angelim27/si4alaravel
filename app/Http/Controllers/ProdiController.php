@@ -34,25 +34,27 @@ class ProdiController extends Controller
     public function store(Request $request)
     {
         $input = $request->validate([
-            'nama' => 'required|unique:fakultas',
+            'nama' => 'required|unique:prodi',
             'singkatan' => 'required|max:5',
             'kaprodi' => 'required',
             'sekretaris' => 'required',
-            'fakultas_id' => 'required',
+            'fakultas_id' => 'required|exists:fakultas,id',
         ]);
-        // simpan data ke tabel prodi
+
         Prodi::create($input);
 
-        //redirect ke route prodi.index
         return redirect()->route('prodi.index')->with('success', 'Program studi berhasil ditambahkan.');
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Prodi $prodi)
+    public function show($prodi)
     {
-        //
+        $prodi = Prodi::findOrFail($prodi); // mencari fakultas berdasarkan id
+        //dd($prodi); // dump and die
+        return view('prodi.show', compact('prodi')); // menampilkan detail fakultas
     }
 
     /**
@@ -74,8 +76,14 @@ class ProdiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Prodi $prodi)
+    public function destroy($prodi)
     {
-        //
+        // Temukan data prodi berdasarkan ID
+        $prodi = Prodi::findOrFail($prodi);
+        // dd($prodi);
+        // Hapus data prodi
+        $prodi->delete();
+        // Redirect ke route prodi.index
+        return redirect()->route('prodi.index')->with('success', 'Program Studi berhasil dihapus.');
     }
 }

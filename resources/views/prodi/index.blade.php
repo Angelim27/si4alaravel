@@ -47,6 +47,18 @@
                             <td>{{ $item->kaprodi}}</td>
                             <td>{{ $item->sekretaris}}</td>
                             <td>{{ $item->fakultas->nama}}</td>
+                            <td>
+                              <a href=" {{ route('prodi.show', $item-> id)}}" class="btn btn-info">show</a> <!-- BTN INFO : WARNA BIRU MUDA -->
+                              <a href=" {{ route('prodi.edit', $item-> id)}}" class="btn btn-warning">edit</a> <!-- BTN WARNING : WARNA KUNING -->
+                              <form action="{{ route('prodi.destroy', $item->id)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <form method="POST" action="{{ route('prodi.destroy', $item->id) }}">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title="Delete" data-nama='{{ $item->nama}}'> Delete </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

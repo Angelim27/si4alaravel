@@ -30,7 +30,7 @@
                 <div class="mb-3">
                     <label for="jk" class="form-label"> Jenis Kelamin</label> <br>
                     <input type="radio" name="jk" value="L" {{ old ('jk') == 'L'? 'checked' : ''}}> Laki-Laki
-                    <input type="radio" name="jk" value="L" {{ old ('jk') == 'P'? 'checked' : ''}}> Perempuan
+                    <input type="radio" name="jk" value="P" {{ old ('jk') == 'P'? 'checked' : ''}}> Perempuan
                     @error('jk')
                         <div class="text-danger"> {{ $message }}</div>
                     @enderror
