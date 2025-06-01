@@ -64,7 +64,7 @@
                     <td>{{ $jadwal->dosen->email}}</td>
                 </tr>
                 <tr>
-                    <th>Sesi</th>
+                    <th> Sesi </th>
                     <td>{{ $jadwal->sesi->nama}}</td>
                 </tr>
             </table>

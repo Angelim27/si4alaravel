@@ -7,7 +7,7 @@
     <div class="col-12">
         <div class="card card-primary card-outline mb-4">
                   <!--begin::Header-->
-                  <div class="card-header"><div class="card-title"><b>Tambah Jadwal</b></div></div>
+                  <div class="card-header"><div class="card-title"><b> Tambah Jadwal </b></div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
                   <form action="{{ route('jadwal.store') }}" method="POST" enctype="multipart/form-data">
@@ -29,7 +29,7 @@
                         @enderror
                       </div>
                       <div class="mb-3">
-                        <label for="kelas" class="form-label"> Kelas</label>
+                        <label for="kelas" class="form-label"> Kelas </label>
                         <input type="text" class="form-control" name="kelas" value="{{ old('kelas') }}">
                         @error('kelas')
                         <div class="text-danger">{{ $message }}</div>
@@ -51,7 +51,7 @@
                             <select class="form-control" name="dosen_id">
                             <option value="">--Pilih Dosen--</option>
                             @foreach ($dosen as $item)
-                            <option value="{{ $item->id }}" {{old ('dosen_id') == $item->id ? 'selected' : ($jadwal->dosen_id == $item->id ? 'selected' : 'null')}}>
+                            <option value="{{ $item->id }}" {{ old('dosen_id') == $item->id ? 'selected' : '' }}>
                                 {{ $item->name }}
                             </option>
                             @endforeach
@@ -61,11 +61,11 @@
                         @enderror
                     </div>
                       <div class="mb-3">
-                        <label for="sesi_id" class="form-label">Sesi</label>
+                        <label for="sesi_id" class="form-label"> Sesi </label>
                         <select class="form-control" name="sesi_id">
                           <option value="">--Pilih Sesi--</option>
                           @foreach ($sesi as $item)
-                          <option value="{{ $item->id }} " {{old ('sesi_id') == $item->id ? 'selected' : ($jadwal->sesi_id == $item->id ? 'selected' : 'null')}}>
+                          <option value="{{ $item->id }}" {{ old('sesi_id') == $item->id ? 'selected' : '' }}>
                             {{ $item->nama }}</option>
                           @endforeach </select>
                             @error('sesi_id')
@@ -76,7 +76,7 @@
                     <!--end::Body-->
                     <!--begin::Footer-->
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary"> Submit</button>
                     </div>
                     <!--end::Footer-->
                   </form>
