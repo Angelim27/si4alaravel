@@ -8,7 +8,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><b> List Mata Kuliah </b></h3>
+          <h3 class="card-title"> List Mata Kuliah </h3>
           <div class="card-tools">
             <button
               type="button"
@@ -30,15 +30,15 @@
           </div>
         </div>
         <div class="card-body">
-          <a href="{{ route('jadwal.create')}}" class="btn btn-primary"> Tambah </a>
-            <br><br><table class="table table-bordered table-striped">
+          <a href="{{ route('mata_kuliah.create')}}" class="btn btn-primary"> Tambah </a>
+            <br><br><table class="table">
                 <tr>
                     <th>Kode Mata Kuliah</th>
                     <th>Nama</th>
                     <th>Prodi</th>
                     <th>Aksi</th>
                 </tr>
-                @foreach ($mata_kuliah as $item)
+                @foreach ($mataKuliah as $item)
                 <tr>
                     <td>{{ $item->kode_mk }}</td>
                     <td>{{ $item->nama }}</td>

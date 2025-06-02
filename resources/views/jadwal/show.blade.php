@@ -8,7 +8,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><b> List Jadwal </b></h3>
+          <h3 class="card-title"> List Jadwal </h3>
           <div class="card-tools">
             <button
               type="button"
@@ -33,7 +33,7 @@
             <table class="table table-bordered table-striped">
                 <tr>
                     <th> Tahun Akademik </th>
-                    <td>{{ $jadwal->tahun_akademik}}</td>
+                    <td>{{ $jadwal->tahun_akademik }}</td>
                 </tr>
                 <tr>
                     <th> Kode Semester </th>

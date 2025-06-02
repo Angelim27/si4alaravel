@@ -37,6 +37,7 @@
                         <th>Kaprodi</th>
                         <th>Sekretaris</th>
                         <th>Fakultas</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 </body>

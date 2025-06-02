@@ -13,9 +13,11 @@ class MataKuliahController extends Controller
      */
     public function index()
     {
-        $mataKuliah = MataKuliah::all(); // perinta SQL select * from MataKuliah
-        //dd($mataKuliah); // dump and die
-        return view('mata_kuliah.index')->with('mata_kuliah', $mataKuliah);
+        // mengambil semua data mata kuliah
+        $mataKuliah = MataKuliah::with('prodi')->get();
+
+        // mengirim data mata kuliah ke view index
+        return view('mata_kuliah.index', compact('mataKuliah'));
     }
 
     /**
@@ -52,7 +54,9 @@ class MataKuliahController extends Controller
     public function show(MataKuliah $mataKuliah)
     {
         //dd($mataKuliah);
-        return view('mata_kuliah.show', compact('mata_kuliah'));
+        // BENAR: $mataKuliah sesuai dengan parameter fungsi
+        return view('mata_kuliah.show', compact('mataKuliah'));
+
     }
 
     /**
@@ -60,8 +64,9 @@ class MataKuliahController extends Controller
      */
     public function edit(MataKuliah $mataKuliah)
     {
-        $prodi = Prodi::all();
-        return view('mata_kuliah.edit', compact('mata_kuliah', 'prodi'));
+        // dd($mataKuliah);
+        $prodi = Prodi::all(); // ambil semua data prodi
+        return view('mata_kuliah.edit', compact('mataKuliah', 'prodi'));
     }
 
     /**

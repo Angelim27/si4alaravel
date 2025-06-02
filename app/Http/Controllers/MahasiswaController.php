@@ -13,8 +13,9 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswa = mahasiswa::all(); // perinta SQL select * from Mahasiswa
-        //dd($mahasiswa); // dump and die
+        //panggil model mahasiswa dmenggunakan eloquent
+        $mahasiswa = Mahasiswa::all(); // perintah sql select * from mahasiswa
+        // dd($mahasiswa); // dump and die
         return view('mahasiswa.index')->with('mahasiswa', $mahasiswa);
     }
 
@@ -23,7 +24,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        $prodi = Prodi::all();
+        $prodi = Prodi::all(); // ambil semua data fakultas
         return view('mahasiswa.create', compact('prodi'));
     }
 
@@ -31,31 +32,36 @@ class MahasiswaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-        //dd($request->all());
+    {
+        // validasi input
         $input = $request->validate([
             'npm' => 'required|unique:mahasiswa',
             'nama' => 'required',
             'jk' => 'required',
-            'tanggal_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
             'tempat_lahir' => 'required',
             'asal_sma' => 'required',
             'prodi_id' => 'required',
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        // upload foto
+        // jika ada file foto yang diupload
         if ($request->hasFile('foto')) {
-            $file = $request->file('foto'); // ambile file foto
+            // ambil file foto
+            $file = $request->file('foto');
+            // buat nama file unik, agar nama foto tidak ada yang sama
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images'), $filename); // simpan foto ke folder public/images
-            $input['foto'] = $filename; // simpan nama file baru ke database
+            // simpan file foto ke folder public/foto
+            $file->move(public_path('foto'), $filename);
+            // simpan nama file baru ke database
+            $input['foto'] = $filename;
         }
+
         // simpan data ke tabel mahasiswa
         Mahasiswa::create($input);
 
-        //redirect ke route mahasiswa.index
+        // redirect ke route mahasiswa.index
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil ditambahkan.');
+
     }
 
     /**
@@ -72,7 +78,9 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
-        //
+        //dd($mahasiswa);
+        $prodi = Prodi::all(); // ambil semua data prodi
+        return view('mahasiswa.edit', compact('mahasiswa', 'prodi')); // mengirim data mahasiswa dan prodi ke view edit
     }
 
     /**
@@ -80,7 +88,42 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        //
+        //validasi input
+        $input = $request->validate([
+            'npm' => 'required',
+            'nama' => 'required',
+            'jk' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'tempat_lahir' => 'required',
+            'asal_sma' => 'required',
+            'prodi_id' => 'required',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        // jika ada file foto yang diupload
+        if ($request->hasFile('foto')) {
+            // hapus foto lama jika ada
+            if ($mahasiswa->foto) {
+                $fotoPath = public_path('foto/' . $mahasiswa->foto);
+                if (file_exists($fotoPath)) {
+                    unlink($fotoPath); // hapus file foto lama
+                }
+            }
+            // ambil file foto
+            $file = $request->file('foto');
+            // buat nama file unik, agar nama foto tidak ada yang sama
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            // simpan file foto ke folder public/foto
+            $file->move(public_path('foto'), $filename);
+            // simpan nama file baru ke database
+            $input['foto'] = $filename;
+        } else {
+            // jika tidak ada file foto yang diupload, tetap gunakan foto lama
+            $input['foto'] = $mahasiswa->foto;
+        }
+        // update data ke tabel mahasiswa
+        $mahasiswa->update($input);
+        // redirect ke route mahasiswa.index
+        return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil diperbarui.');
     }
 
     /**
@@ -88,16 +131,15 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
-        $mahasiswa->delete(); // menghapus data mahasiswa  
-        // hapus foto jika ada
+        $mahasiswa->delete(); // hapus data mahasiswa
+        // jika ada foto, hapus juga file fotonya
         if ($mahasiswa->foto) {
-            $fotoPath = public_path('images/' . $mahasiswa->foto);
+            $fotoPath = public_path('foto/' . $mahasiswa->foto);
             if (file_exists($fotoPath)) {
-                unlink($fotoPath); // menghapus file foto
+                unlink($fotoPath); // hapus file foto
             }
         }
         // redirect ke route mahasiswa.index
-        // dengan pesan sukses 
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil dihapus.');
     }
 }

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'dosen', 'mahasiswa']) // Menghapus kolom 'role' dari tabel 'users'
-                ->default('mahasiswa') // Menambahkan kembali kolom 'role' dengan nilai default 'mahasiswa'
-                ->after('email'); // Menempatkan kolom 'role' setelah kolom 'email'  
+            $table->enum('role', ['admin', 'dosen', 'mahasiswa'])
+                ->default('mahasiswa')
+                ->after('email');
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+            //
         });
     }
 };

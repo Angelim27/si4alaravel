@@ -7,7 +7,7 @@
     <div class="col-12">
         <div class="card card-primary card-outline mb-4">
                   <!--begin::Header-->
-                  <div class="card-header"><div class="card-title"><b> Edit Mata Kuliah </b></div></div>
+                  <div class="card-header"><div class="card-title"> Edit Mata Kuliah </div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
                    <form action="{{ route('mata_kuliah.update', $mataKuliah->id) }}" method="POST">

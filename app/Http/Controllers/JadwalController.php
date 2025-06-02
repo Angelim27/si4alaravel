@@ -29,7 +29,7 @@ class JadwalController extends Controller
     {
         $sesi = Sesi::all(); // ambil semua data sesi
         $mataKuliah = MataKuliah::all(); // ambil semua data mata kuliah
-        $dosen = User::all(); // ambil semua dosen
+        $dosen = User::where('role', 'dosen')->get(); 
         return view('jadwal.create', compact('sesi', 'mataKuliah', 'dosen'));
     }
 
@@ -58,7 +58,7 @@ class JadwalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($jadwal) //menampilkan detail data jadwal
+    public function show( Jadwal $jadwal) //menampilkan detail data jadwal
     {
         // dd($jadwal); //dump and die 
         return view('jadwal.show', compact('jadwal')); //mengirim data ke view jadwal.show
@@ -67,19 +67,19 @@ class JadwalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($jadwal) //menampilkan formulir edit data jadwal
+    public function edit(Jadwal $jadwal) //menampilkan formulir edit data jadwal
     {
         // dd($jadwal);
         $sesi = Sesi::all(); // ambil semua data sesi
         $mataKuliah = MataKuliah::all(); // ambil semua data mata kuliah
-        $dosen = User::all(); // Ambil semua user dulu
+        $dosen = User::where('role', 'dosen')->get(); 
         return view('jadwal.edit', compact('jadwal', 'sesi', 'mataKuliah', 'dosen'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $jadwal) //memproses penyimpanan perubahan data yg ada pada formulir edit tadi
+    public function update(Request $request, Jadwal $jadwal) //memproses penyimpanan perubahan data yg ada pada formulir edit tadi
     {
         // validasi input
         $input = $request->validate([
@@ -97,9 +97,9 @@ class JadwalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($jadwal) //menghapus data jadwal
+    public function destroy(Jadwal$jadwal) //menghapus data jadwal
     {
-        $jadwal = Jadwal::findOrFail($jadwal); //mencari data jadwal berdasarkan id
+        $jadwal = Jadwal::findOrFail($jadwal->id); //mencari data jadwal berdasarkan id
         // dd($jadwal);
         $jadwal->delete(); //menghapus data jadwal
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.'); //redirect ke route jadwal.index

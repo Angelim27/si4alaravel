@@ -7,7 +7,7 @@
         <div class="col-12">
         <div class="card card-primary card-outline mb-4">
                   <!--begin::Header-->
-                  <div class="card-header"><div class="card-title">Tambah Sesi</div></div>
+                  <div class="card-header"><div class="card-title"> Tambah Sesi </div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
                   <form action="{{ route('sesi.store') }}" method="POST">

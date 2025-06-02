@@ -5,10 +5,10 @@
     <div class="col-12">
         <div class="card card-primary card-outline mb-4">
             <!--begin::Header-->
-            <div class="card-header"><div class="card-title">Tambah Mahasiswa</div></div>
+            <div class="card-header"><div class="card-title"> Tambah Mahasiswa </div></div>
             <!--end::Header-->
             <!--begin::Form-->
-            <form action="{{ route('mahasiswa.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('mahasiswa.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
         
               <!--begin::Body-->
@@ -28,7 +28,7 @@
                   @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="jk" class="form-label"> Jenis Kelamin</label> <br>
+                    <label for="jk" class="form-label"> Jenis Kelamin </label> <br>
                     <input type="radio" name="jk" value="L" {{ old ('jk') == 'L'? 'checked' : ''}}> Laki-Laki
                     <input type="radio" name="jk" value="P" {{ old ('jk') == 'P'? 'checked' : ''}}> Perempuan
                     @error('jk')

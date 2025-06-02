@@ -7,7 +7,7 @@
     <div class="col-12">
         <div class="card card-primary card-outline mb-4">
                   <!--begin::Header-->
-                  <div class="card-header"><div class="card-title"><b> Tambah Mata Kuliah </b></div></div>
+                  <div class="card-header"><div class="card-title"> Tambah Mata Kuliah </div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
                   <form action="{{ route('mata_kuliah.store') }}" method="POST" enctype="multipart/form-data">

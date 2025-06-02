@@ -8,7 +8,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><b> List Jadwal </b></h3>
+          <h3 class="card-title"> List Jadwal </h3>
           <div class="card-tools">
             <button
               type="button"
@@ -31,7 +31,7 @@
         </div>
         <div class="card-body">
           <a href="{{ route('jadwal.create')}}" class="btn btn-primary"> Tambah </a>
-            <br><br><table class="table table-bordered table-striped">
+            <br><br><table class="table">
                 <tr>
                     <th>Tahun Akademik</th>
                     <th>Kode Semester</th>
