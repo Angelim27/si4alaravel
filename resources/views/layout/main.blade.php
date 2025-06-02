@@ -241,13 +241,13 @@
                   <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();" 
-                                                class="btn btn-default btn-flat float-end">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
+                            onclick="event.preventDefault();
+                            this.closest('form').submit();" 
+                            class="btn btn-default btn-flat float-end"
+                            style="width: auto; padding: 4px 12px;">
+                            {{ __('Log Out') }}
+                          </x-dropdown-link>
                         </form>
                 </li>
                 <!--end::Menu Footer-->
