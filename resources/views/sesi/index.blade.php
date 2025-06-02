@@ -40,7 +40,7 @@
                 <tbody>
                     @foreach ($sesi as $item)
                         <tr> 
-                            <td>{{ $seso->id }}</td>
+                            <td>{{ $sesi->id }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>
                               <a href=" {{ route('sesi.show', $item-> id)}}" class="btn btn-info"> Show </a> <!-- BTN INFO : WARNA BIRU MUDA -->
