@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('sesi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mahasiswa_id')->constrained('mahasiswa')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreignId('mata_kuliah_id')->constrained('mata_kuliah')->onDelete('restrict')->onUpdate('restrict');
-            $table->dateTime('tanggal_jadwal');
-            $table->string('ruang', 20);
+            $table->string('nama', 50);
             $table->timestamps();
-        }); 
+        });
     }
 
     /**

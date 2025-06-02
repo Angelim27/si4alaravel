@@ -38,7 +38,7 @@
                     <th>Prodi</th>
                     <th>Aksi</th>
                 </tr>
-                @foreach ($mataKuliah as $item)
+                @foreach ($mata_kuliah as $item)
                 <tr>
                     <td>{{ $item->kode_mk }}</td>
                     <td>{{ $item->nama }}</td>
@@ -51,7 +51,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger show_confirm"
                             data-toggle="tooltip" title='Delete'
-                            data-nama='{{ $item->nama }}'>Delete</button>
+                            data-nama='{{ $item->nama }}'> Delete </button>
                         </form>
                     </td>
                 </tr>

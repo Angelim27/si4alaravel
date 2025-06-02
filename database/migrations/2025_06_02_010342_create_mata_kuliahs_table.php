@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('mata_kuliah', function (Blueprint $table) {
+        Schema::create('mata_kuliah', function (Blueprint $table) {
             $table->id();
-            $table->string('kode', 10)->unique();
+            $table->string('kode_mk', 10);
             $table->string('nama', 50);
-            $table->integer('sks');
-            $table->enum('semester', ['1', '2', '3', '4', '5', '6', '7', '8']);
-            $table->foreignId('prodi_id')->constrained('prodi')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreignId('prodi_id')->constrained('prodi')->onDelete('restrict')
+            ->onUpdate('restrict');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        schema::dropIfExists('mata_kuliah');
+        Schema::dropIfExists('mata_kuliah');
     }
 };

@@ -15,7 +15,7 @@ class MataKuliahController extends Controller
     {
         $mataKuliah = MataKuliah::all(); // perinta SQL select * from MataKuliah
         //dd($mataKuliah); // dump and die
-        return view('mataKuliah.index')->with('mataKuliah', $mataKuliah);
+        return view('mata_kuliah.index')->with('mata_kuliah', $mataKuliah);
     }
 
     /**
@@ -24,7 +24,7 @@ class MataKuliahController extends Controller
     public function create()
     {
         $prodi = Prodi::all();
-        return view('mataKuliah.create', compact('prodi'));
+        return view('mata_kuliah.create', compact('prodi'));
     }
 
     /**
@@ -52,7 +52,7 @@ class MataKuliahController extends Controller
     public function show(MataKuliah $mataKuliah)
     {
         //dd($mataKuliah);
-        return view('mataKuliah.show', compact('mataKuliah'));
+        return view('mata_kuliah.show', compact('mata_kuliah'));
     }
 
     /**
@@ -61,7 +61,7 @@ class MataKuliahController extends Controller
     public function edit(MataKuliah $mataKuliah)
     {
         $prodi = Prodi::all();
-        return view('mataKuliah.edit', compact('mataKuliah', 'prodi'));
+        return view('mata_kuliah.edit', compact('mata_kuliah', 'prodi'));
     }
 
     /**
@@ -77,7 +77,7 @@ class MataKuliahController extends Controller
 
         $mataKuliah->update($input);
 
-        return redirect()->route('mataKuliah.index')->with('success', 'Mata Kuliah berhasil diupdate.');
+        return redirect()->route('mata_kuliah.index')->with('success', 'Mata Kuliah berhasil diupdate.');
     }
 
     /**
