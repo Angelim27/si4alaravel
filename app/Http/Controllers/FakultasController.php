@@ -32,6 +32,11 @@ class FakultasController extends Controller
      */
     public function store(Request $request) //memproses penyimpanan data fakultas
     {
+        // cek apakah user memiliki izin untuk membuat data fakultas
+        if ($request->user()->cannot('create', Fakultas::class)) {
+            abort(403);
+        }
+
         // validasi input
         $input = $request->validate([
             'nama' => 'required|unique:fakultas',
@@ -70,8 +75,14 @@ class FakultasController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $fakultas) //memproses penyimpanan perubahan data yg ada pada formulir edit tadi
-    {
+    {   
         $fakultas = Fakultas::findOrFail($fakultas); //mencari data fakultas berdasarkan id  
+
+        // cek apakah user memiliki izin untuk mengupdate data fakultas
+        if ($request->user()->cannot('update', $fakultas)) {
+            abort(403);
+        } 
+        
         // validasi input
         $input = $request->validate([
             'nama' => 'required|unique:fakultas',
@@ -86,10 +97,16 @@ class FakultasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($fakultas) //menghapus data fakultas
+    public function destroy(Request $request,$fakultas) //menghapus data fakultas
     {
         $fakultas = Fakultas::findOrFail($fakultas); //mencari data fakultas berdasarkan id
-        // dd($fakultas); 
+
+        // dd($fakultas);
+
+        if ($request->user()->cannot('delete', $fakultas)) {
+            abort(403);
+        } 
+        
         $fakultas->delete(); //menghapus data fakultas
         return redirect()->route('fakultas.index')->with('success', 'Fakultas berhasil dihapus.'); //redirect ke route fakultas.index   
     }
